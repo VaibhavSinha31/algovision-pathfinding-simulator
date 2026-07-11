@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111827" />
+  <title>AlgoVision — Visual Pathfinding Simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <nav class="navbar" aria-label="Pathfinder controls">
+      <a class="brand" href="#" aria-label="AlgoVision home"><span class="brand-mark">A</span><span>AlgoVision</span></a>
+      <div class="control-group selection-group">
+        <label><span>Algorithm</span><select id="algorithmSelect"><option value="bfs">Breadth First Search</option><option value="dfs">Depth First Search</option><option value="dijkstra">Dijkstra's Algorithm</option></select></label>
+        <label><span>Maze</span><select id="mazeSelect"><option value="random">Random Maze</option><option value="division">Recursive Division</option></select></label>
+      </div>
+      <div class="control-group actions">
+        <button id="visualizeBtn" class="button primary"><span class="play-icon">▶</span> Visualize</button>
+        <button id="mazeBtn" class="button">Generate Maze</button>
+        <button id="clearPathBtn" class="button ghost">Clear Path</button>
+        <button id="clearBoardBtn" class="button ghost">Clear Board</button>
+      </div>
+      <label class="speed-control"><span>Speed</span><select id="speedSelect"><option value="slow">Slow</option><option value="normal" selected>Normal</option><option value="fast">Fast</option><option value="instant">Instant</option></select></label>
+    </nav>
+
+    <section class="hero">
+      <div><p class="eyebrow">INTERACTIVE ALGORITHM LAB</p><h1>Find the route.<br><em>See the thinking.</em></h1></div>
+      <p class="hero-copy">Build a maze, choose an algorithm, and watch every decision unfold — one node at a time.</p>
+    </section>
+
+    <section class="dashboard" aria-label="Live visualization information">
+      <article><span>Current algorithm</span><strong id="infoAlgorithm">Breadth First Search</strong></article>
+      <article><span>Visited nodes</span><strong id="visitedCount">0</strong></article>
+      <article><span>Shortest path</span><strong id="pathLength">—</strong></article>
+      <article><span>Execution time</span><strong id="executionTime">—</strong></article>
+      <article class="status-card"><span>Status</span><strong id="statusText"><i></i> Idle</strong></article>
+    </section>
+
+    <section class="board-card">
+      <div class="board-toolbar"><p><b>Canvas</b><span>Drag to draw · Shift + drag for weights · Drag <i class="start-dot"></i> and <i class="end-dot"></i></span></p><div class="legend" aria-label="Grid legend"><span><i class="legend-start"></i>Start</span><span><i class="legend-end"></i>Target</span><span><i class="legend-wall"></i>Wall</span><span><i class="legend-weight"></i>Weight</span><span><i class="legend-visited"></i>Visited</span><span><i class="legend-path"></i>Path</span></div></div>
+      <div id="gridWrapper" class="grid-wrapper"><div id="grid" class="grid" role="grid" aria-label="Interactive pathfinding grid"></div></div>
+    </section>
+    <footer><span>Press <kbd>Space</kbd> to visualize</span><span><kbd>M</kbd> generate maze</span><span><kbd>R</kbd> reset board</span><span>Built for curious minds.</span></footer>
+  </main>
+  <div id="loadingOverlay" class="loading-overlay" aria-hidden="true"><div class="loader-orbit"><span></span></div><p>Charting the course…</p></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
